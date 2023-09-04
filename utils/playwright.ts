@@ -33,7 +33,7 @@ export default (hotelid, checkin, checkout) => {
     //   return JSON.parse(body);
     // });
 
-    await browser.close()
+    await browser.close();
 
     resolve(res)
   })
