@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "description": "api for maldives-hotels-api",
   "main": "api/index.ts",
-  "scripts": {
-    "build": "npx playwright install"
-  },
+  "scripts": {},
   "keywords": [],
   "author": "0xM1cro <0xm1cro@proton.me",
   "repository": {
