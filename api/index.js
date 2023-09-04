@@ -3,6 +3,7 @@ const playwright = require("playwright")
 
 module.exports = async (req, res) => {
   let { hotelid, checkin, checkout  } = req.query
+  let data = [];
   const launchOptions = {
        headless: false,
      }
@@ -13,10 +14,11 @@ module.exports = async (req, res) => {
    await page.waitForTimeout(1000);
    let body = await page.waitForSelector('body');
    await page.waitForTimeout(1000);
-   let res = await body?.evaluate(el => el.textContent);
-   console.log(res)
+   let json = await body?.evaluate(el => el.textContent);
+   data.push(json);
+   console.log(data)
    await browser.close()
 
-  res.status(200).json(res)
+  res.status(200).json(data)
 }
 
