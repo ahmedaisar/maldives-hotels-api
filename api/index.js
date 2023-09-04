@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
 
   for (const browserType of ['chromium', 'firefox',  'webkit']){
    const launchOptions = {
-       headless: true,
+       headless: false,
      }
    const browser = await playwright[browserType].launch(launchOptions)
    const context = await browser.newContext()
