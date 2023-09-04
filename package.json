@@ -1,11 +1,11 @@
 {
   "name": "carbon-api",
   "version": "0.1.0",
-  "description": "api for carbon.now.sh",
+  "description": "api for maldives-hotels-api",
   "main": "index.js",
   "scripts": {},
   "keywords": [],
-  "author": "GY <dev.youngkwok718@gmail.com>",
+  "author": "0xM1cro <0xm1cro@proton.me",
   "repository": {
     "type": "git",
     "url": "https://github.com/ahmedaisar/maldives-hotels-api.git"
