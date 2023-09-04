@@ -1,8 +1,8 @@
 {
-  "name": "carbon-api",
+  "name": "maldives-hotels-api",
   "version": "0.1.0",
   "description": "api for maldives-hotels-api",
-  "main": "index.js",
+  "main": "api/index.ts",
   "scripts": {},
   "keywords": [],
   "author": "0xM1cro <0xm1cro@proton.me",
