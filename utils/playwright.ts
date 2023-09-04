@@ -1,4 +1,4 @@
-const playwright = require('playwright-aws-lambda');
+const chromium = require('chrome-aws-lambda');
 
 type Params = {
   checkin: string
@@ -10,9 +10,14 @@ type Params = {
 export default (hotelid, checkin, checkout) => {
   return new Promise(async (resolve, reject) => {
     console.log(hotelid)
-    const browser = await playwright.launchChromium({ slowMo: 100 })
-    const context = await browser.newContext({ screen: { width: 4096, height: 4096 } })
-    const page = await context.newPage()
+    let browser = await chromium.puppeteer.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath,
+      headless: true,
+      ignoreHTTPSErrors: true,
+    });
+    let page = await browser.newPage();
 
     // await page.goto(`https://hotelscan.com/`)
     await page.goto(`https://hotelscan.com/combiner/${hotelid}?pos=zz&locale=en&checkin=${checkin}&checkout=${checkout}&rooms=2&mobile=0&loop=1&country=MV&ef=1&geoid=xmmmamtksdxx&toas=resort&availability=1&deviceNetwork=4g&deviceCpu=20&deviceMemory=8&limit=25&offset=0`)
