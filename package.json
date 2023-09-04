@@ -4,7 +4,7 @@
   "description": "api for maldives-hotels-api",
   "main": "api/index.ts",
   "scripts": {
-    "build": "npm run build && npx playwright install"
+    "build": "npx playwright install"
   },
   "keywords": [],
   "author": "0xM1cro <0xm1cro@proton.me",
