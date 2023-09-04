@@ -1,4 +1,5 @@
 const chromium = require('chrome-aws-lambda');
+const playwright = require('playwright-core');
 
 type Params = {
   checkin: string
@@ -10,11 +11,11 @@ type Params = {
 export default (hotelid, checkin, checkout) => {
   return new Promise(async (resolve, reject) => {
     console.log(hotelid)
-    let browser = await chromium.puppeteer.launch({
+    let browser = await playwright.chromium.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
       executablePath: await chromium.executablePath,
-      headless: true,
+      headless: chromium.headless,
       ignoreHTTPSErrors: true,
     });
     let page = await browser.newPage();
