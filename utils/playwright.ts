@@ -1,66 +1,38 @@
 import * as playwright from 'playwright-aws-lambda'
 
 type Params = {
-  code: string
-  theme: string
+  arrival: string
+  departure: string
+  hotelid: string
+
 }
 
-const themes = [
-  '3024 Night',
-  'A11y Dark',
-  'Blackboard',
-  'Base 16 (Dark)',
-  'Cobalt',
-  'Dracula ProPurchase',
-  'Duotone',
-  'Hopscotch',
-  'Lucario',
-  'Material',
-  'Monokai',
-  'Night Owl',
-  'Nord',
-  'Oceanic Next',
-  'One Light',
-  'One Dark',
-  'Panda',
-  'Paraiso',
-  'Seti',
-  'Shades of Purple',
-  'Solarized (Dark)',
-  'Solarized (Light)',
-  "SynthWave '84",
-  'Twilight',
-  'Verminal',
-  'VSCode',
-  'Yeti',
-  'Zenburn',
-]
 
 export default (params: Params) => {
   return new Promise(async (resolve, reject) => {
-    let { code, theme } = params
-    if (!themes.includes(theme)) {
-      theme = 'Dracula ProPurchase'
-    }
+    let { arrival, departure, hotelid } = params
+
     const browser = await playwright.launchChromium({ headless: true })
     const context = await browser.newContext({ screen: { width: 4096, height: 4096 } })
     const page = await context.newPage()
 
-    await page.goto('https://carbon.now.sh/')
-    await page
-      .getByRole('combobox', { name: 'Theme' })
-      .getByRole('button', { name: 'open menu' })
-      .click()
-    await page.getByText(theme).click()
-    await page.getByRole('textbox', { name: 'Code editor' }).press('Control+a')
-    await page.getByRole('textbox', { name: 'Code editor' }).fill(code)
-    await page.getByRole('button', { name: 'Export menu dropdown' }).click()
+    await page.goto(`https://hotelscan.com/combiner/${hotelid}?pos=zz&locale=en&checkin=${arrival}&checkout=${departure}&rooms=2&mobile=0&loop=1&country=MV&ef=1&geoid=xmmmamtksdxx&toas=resort&availability=1&deviceNetwork=4g&deviceCpu=20&deviceMemory=8&limit=25&offset=0`)
 
-    await page.getByRole('button', { name: 'Open' }).filter({ hasText: 'Open' }).click()
-    await page.waitForURL(/blob:https:\/\/carbon.now.sh\.*/)
-    const data = await page.getByRole('img').screenshot({ type: 'png' })
+
+    let body = await page.waitForSelector('body');
+
+    let res = await body?.evaluate(el => el.textContent);
+    
+    // let html = await page.evaluate(() => {
+    // let body = document.querySelector("body").innerText;
+    //   //let pre = document.querySelector("pre").innerHTML;
+    //   return JSON.parse(body);
+    // });
+    const data = JSON.stringify(res);
 
     await browser.close()
+
+    console.log(data);
 
     resolve(data)
   })
