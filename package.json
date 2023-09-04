@@ -19,6 +19,7 @@
     "typescript": "^4.9.4"
   },
   "dependencies": {
-    "playwright-aws-lambda": "^0.9.0"
+    "playwright-aws-lambda": "^0.9.0",
+    "playwright-core": "^1.37.1"
   }
 }
