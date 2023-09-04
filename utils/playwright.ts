@@ -10,7 +10,7 @@ type Params = {
 export default (hotelid, checkin, checkout) => {
   return new Promise(async (resolve, reject) => {
     console.log(hotelid)
-    const browser = await playwright.launchChromium({ headless: false })
+    const browser = await playwright.launchChromium({ headless: true })
     const context = await browser.newContext({ screen: { width: 4096, height: 4096 } })
     const page = await context.newPage()
 
