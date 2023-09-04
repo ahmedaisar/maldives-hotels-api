@@ -1,4 +1,5 @@
-const playwright = require("playwright")
+const chromium = require('playwright')
+
 
 module.exports = async (req, res) => {
 
@@ -8,7 +9,7 @@ module.exports = async (req, res) => {
    const launchOptions = {
        headless: false,
      }
-   const browser = await playwright[browserType].launch(launchOptions)
+   const browser = await chromium.launch()
    const context = await browser.newContext()
    const page = await context.newPage()
    await page.goto(`https://hotelscan.com/combiner/${hotelid}?pos=zz&locale=en&checkin=${checkin}&checkout=${checkout}&rooms=2&mobile=0&loop=1&country=MV&ef=1&geoid=xmmmamtksdxx&toas=resort&availability=1&deviceNetwork=4g&deviceCpu=20&deviceMemory=8&limit=25&offset=0`);
