@@ -1,14 +1,16 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+let chrome = require("chrome-aws-lambda");
+let puppeteer = require("puppeteer-core");
 
-let chrome = {};
-let puppeteer;
+// let chrome = {};
+// let puppeteer;
 
-if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
-  chrome = require("chrome-aws-lambda");
-  puppeteer = require("puppeteer-core");
-} else puppeteer = require("puppeteer");
+// if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
+//   let chrome = require("chrome-aws-lambda");
+//   let puppeteer = require("puppeteer-core");
+// } 
 
 
 app.use(express.json());
