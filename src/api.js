@@ -1,18 +1,22 @@
-import express, { Router } from 'express';
-import serverless from 'serverless-http';
+const express = require("express");
+const serverless = require("serverless-http");
 const cors = require('cors');
 let chrome = require("chrome-aws-lambda");
 let puppeteer = require("puppeteer-core");
 
 const api = express();
 
-const router = Router();
-router.get('/hello', (req, res) => res.send('Hello World!'));
+const router = express.Router();
+router.get("/hello", (req, res) => {
+  res.json({
+    hello: "hello!"
+  });
+});
 router.get("/maldives/hotel", async function (req, res) {
     const { hotelid, checkin, checkout } = req.query
     let options = { executablePath: await chrome.executablePath,
     headless: 'new', };
-    const browser = await puppeteer.launch(options);
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
     console.log(hotelid, checkin, checkout);
     let data = []
@@ -30,7 +34,7 @@ router.get("/maldives/hotel", async function (req, res) {
       throw error;
     }
   
-    return res.json(data);
+    res.json(data);
   })
 
 api.use(`/.netlify/functions/api`, router);
