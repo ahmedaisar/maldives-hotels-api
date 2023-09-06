@@ -2,11 +2,7 @@
   "name": "maldives-hotels-api",
   "version": "0.1.0",
   "description": "api for maldives-hotels-api",
-  "main": "./server.js",
-  "scripts": {
-    "start": "./node_modules/.bin/netlify-lambda serve src",
-    "build": "./node_modules/.bin/netlify-lambda build src"
-  },
+  "main": "./api.js",
   "keywords": [],
   "author": "0xM1cro <0xm1cro@proton.me",
   "repository": {
@@ -19,6 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "@netlify/functions": "^2.0.2",
+    "axios": "^1.5.0",
     "chrome-aws-lambda": "^6",
     "cors": "^2.8.5",
     "express": "^4.18.2",
