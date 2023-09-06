@@ -33,6 +33,6 @@ router.get("/maldives/hotel", async function (req, res) {
     return res.json(data);
   })
 
-api.use('/api/', router);
+api.use(`/.netlify/functions/api`, router);
 
 export const handler = serverless(api);

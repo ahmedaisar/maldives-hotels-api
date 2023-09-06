@@ -4,4 +4,4 @@ node_modules/
 # Local Netlify folder
 .netlify
 temp
-
+functions
