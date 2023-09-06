@@ -1,5 +1,5 @@
-const express = require("express");
-const serverless = require("serverless-http");
+import express, { Router } from 'express';
+import serverless from 'serverless-http';
 const axios = require('axios');
 // const cors = require('cors');
 // let chrome = require("chrome-aws-lambda");
@@ -7,7 +7,7 @@ const axios = require('axios');
 
 const api = express();
 
-const router = express.Router();
+const router = Router();
 router.get("/hello", (req, res) => {
   res.json({hello: "hello"});
 });
@@ -19,7 +19,8 @@ router.get("/maldives/hotel", function (req, res) {
       url: `https://hotelscan.com/combiner/${hotelid}?pos=zz&locale=en&checkin=${checkin}&checkout=${checkout}&rooms=2&mobile=0&loop=1&country=MV&ef=1&geoid=xmmmamtksdxx&toas=resort&availability=1&deviceNetwork=4g&deviceCpu=20&deviceMemory=8&limit=25&offset=0`,
     };    
     axios(config).then(response => { data.push(response.data)})
-    res.json(data);                
+    res.json(data);         
+    console.log(data);       
   })
 
 api.use('/api/', router);
