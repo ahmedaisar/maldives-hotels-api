@@ -46,7 +46,7 @@ app.use(cors());
 app.get("/api/maldives/hotel", async function (req, res) {
   const { hotelid, checkin, checkout } = req.query
 
-  let options = { headless: 'new', executablePath: await chrome.executablePath,
+  let options = { executablePath: await chrome.executablePath,
   headless: 'new', };
   const browser = await puppeteer.launch(options);
   const page = await browser.newPage();
