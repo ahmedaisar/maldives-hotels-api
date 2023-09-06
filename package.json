@@ -2,7 +2,7 @@
   "name": "maldives-hotels-api",
   "version": "0.1.0",
   "description": "api for maldives-hotels-api",
-  "main": "./netlify/functions/index.js",
+  "main": "./server.js",
   "scripts": {},
   "keywords": [],
   "author": "0xM1cro <0xm1cro@proton.me",
