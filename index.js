@@ -9,13 +9,10 @@ app.use(cors());
 async function getHotel(hotelid, checkin, checkout) {
 
   const options = {
-    args: await chrome.args,
+    args:  chrome.args,
     executablePath: await chrome.executablePath,
-    headless: await chrome.headless,
+    headless: chrome.headless,
   };
-  // const browser = await chrome.puppeteer.launch(options);
-  // const page = await browser.newPage();
-  // let data = []
 
   try {
     const browser = await chrome.puppeteer.launch(options);
