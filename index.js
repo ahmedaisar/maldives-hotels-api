@@ -16,14 +16,11 @@ app.use(cors());
 
 async function getHotel(hotelid, checkin, checkout) {
 
-  let options = { headless: 'new' };
+  let options = { headless: 'true' };
   if (process.env.AWS_LAMBDA_FUNCTION_VERSION) {
     options = {
-      args: [...chrome.args, "--hide-scrollbars", "--disable-web-security"],
-      defaultViewport: chrome.defaultViewport,
+      args: [...chrome.args],
       executablePath: await chrome.executablePath,
-      headless: 'new',
-      ignoreHTTPSErrors: true,
     };
   }
   const browser = await puppeteer.launch(options);
