@@ -9,7 +9,7 @@ app.use(cors());
 async function getHotel(hotelid, checkin, checkout) {
 
   const options = {
-    args:  [chrome.args, "--no-sandbox"],
+    args:  [chrome.args],
     executablePath: await chrome.executablePath,
     headless: chrome.headless,
   };
