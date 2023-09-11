@@ -21,14 +21,14 @@ export default async function handler(req, res) {
         waitUntil: "networkidle2",
       }
     );
-    let body = await page.waitForSelector('body');
-    let json = await body?.evaluate(el => el.textContent);
-    //await page.waitForTimeout(2000);
-    // let html = await page.evaluate(() => {
-    //   return JSON.parse(document.querySelector("body").innerText);
-    // });
+    // let body = await page.waitForSelector('body');
+    // let json = await body?.evaluate(el => el.textContent);
+    await page.waitForTimeout(1000);
+    let html = await page.evaluate(() => {
+      return JSON.parse(document.querySelector("body").innerText);
+    });
     await browser.close();
-    res.status(200).json(json);
+    res.status(200).json(html);
     console.log(html);
   } catch (error) {
     console.log(error);
